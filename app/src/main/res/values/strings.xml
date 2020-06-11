@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Bond</string>
+    <string name="bond_hint">Bond</string>
+    <string name="name">用户名:</string>
+    <string name="code">密码:</string>
+    <string name="code2">确认密码:</string>
+    <string name="login">登录</string>
+    <string name="register">注册</string>
+    <string name="email">邮箱</string>
+    <string name="save">注册</string>
+    <string name="back">返回</string>
+    <string name="label_first">First page</string>
+    <string name="label_sencond">Second page</string>
+    <string name="label_third">Third page</string>
+    <string name="nodata">新功能正在开发中，敬请期待</string>
+    <string name="Title">answer</string>
+
+
+</resources>
