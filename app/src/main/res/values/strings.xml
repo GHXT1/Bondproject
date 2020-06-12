@@ -14,6 +14,8 @@
     <string name="label_third">Third page</string>
     <string name="nodata">新功能正在开发中，敬请期待</string>
     <string name="Title">answer</string>
+    <string name="button1">新闻公告</string>
+    <string name="nodata1">wait...</string>
 
 
 </resources>
