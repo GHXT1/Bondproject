@@ -1,15 +1,22 @@
 package com.swufe.bond;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.app.ListActivity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Message;
 import android.provider.DocumentsContract;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.androidkun.xtablayout.XTabLayout;
@@ -24,6 +31,7 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 public class BondshowActivity extends AppCompatActivity {
     private final String TAG = "Bondshow";
@@ -44,111 +52,101 @@ public class BondshowActivity extends AppCompatActivity {
 
 
     }
-}
-    /*public void Test(View v) {
-        Document doc = null;
-        try {
-            String url = "https://www.chinabond.com.cn/cb/cn/xwgg/ggtz/zyjsgs/zytz/list.shtml";
-            doc = Jsoup.connect(url).get();
-            Log.i(TAG, "run: " + doc.title());
-            Elements tables = doc.getElementsByTag("li").select("a");
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.share,menu);
+        return true;
+    }
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.menu_set) {
+            Intent list = new Intent(this, SettingActivity.class);
+            startActivity(list);
 
-            String title,detail;
-            for (int i = 0; i < tables.size(); i ++) {
-                title = tables.get(i).attr("title");
-                detail = tables.get(i).attr("href");
+        }else if(item.getItemId()==R.id.open_list) {
+            //打开列表窗口
+            Intent list = new Intent(this, ShareActivity.class);
+            startActivityForResult(list,1);
+            //测试数据库
+            /*RateItem item1=new RateItem("aaaa","123");
+            RateManager manager=new RateManager(this);
+            manager.add(item1);
+            manager.add(new RateItem("bbbm","2222"));
+            Log.i(TAG, "onOptionsItemSelected: 写入数据完毕");
 
-
-                Log.i(TAG, "run: " + title + "==>" + detail);
-
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
+            //查询所有数据
+            List<RateItem> testList=manager.listAll();
+            for(RateItem i:testList){
+                Log.i(TAG, "onOptionsItemSelected: 取出数据[id="+i.getId()+"]Name="+i.getCurName()+"Rate="+i.getCurRate());
+            }*/
         }
+        else if(item.getItemId()==R.id.menu_search) {
+            //打开列表窗口
+            Intent list = new Intent(this, SearchActivity.class);
+            startActivityForResult(list,1);}
+        return super.onOptionsItemSelected(item);
     }
-    /////////
-    Handler handler;
-    private static final String TAG = "FirstFragment1";
-    private boolean isViewPrepared = false; //是否初始化完成
-    private  List<String> title;
-    public FirstFragment1() {
-        // Required empty public constructor
-    }
-
-
+}
+    /*Handler handler;
+    private static final String TAG = "MyList";
+    private Vector<String> listItems;//存放文字
+    private ListAdapter adapter;
+    String title,href;
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        //将碎片的XML文件转换为视图用inflate()
-        View fragmentView = inflater.inflate(R.layout.activity_first_fragment1, container, false);
-        //求碎片视图中的ListView控件还是使用findViewById();
-        final ListView lv = fragmentView.findViewById(R.id.listview);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        this.setListAdapter(adapter);
+        //MyAdapter myAdapter=new MyAdapter(this,R.layout.list_item,listItems);
+        //this.setListAdapter(myAdapter);
+
 
         Thread t = new Thread(this);
         t.start();
 
-
-        //定义适配器的目的还是为了将字符串数组与碎片中的ListView结合起来，形成新闻条目的显示。
-        //第一个参数为getActivity()的原因，是因为碎片纳入活动后，ListView它就是主活动中的视图了。
         handler = new Handler() {
             @Override
             public void handleMessage(@NonNull Message msg) {
                 if (msg.what == 7) {
-                    title = (List<String>) msg.obj;
-                    ArrayAdapter<String> ada = new ArrayAdapter<>(getActivity(),
-                            android.R.layout.simple_list_item_1, title
-                    );
-                    lv.setAdapter(ada);
+                    listItems = (Vector<String>) msg.obj;
+                    adapter = new ArrayAdapter(MyListActivity.this, android.R.layout.simple_list_item_1, listItems);
+                    setListAdapter(adapter);
                 }
                 super.handleMessage(msg);
             }
         };
-        //点击事件
-        lv.setOnItemClickListener(this);
-        //最后返回的是碎片形成的视图
-        return fragmentView;
+        getListView().setOnItemClickListener(this);
     }
 
-        //生成适配器的Item和动态数组对应的元素
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-   }
-
-    @Override
     public void run() {
         //获取网络数据，放入list带回到主线程
-        List<String> retList = new ArrayList<String>();
+        Vector<String> retList = new Vector<String>();
+
         Document doc = null;
         try {
             String url = "https://www.chinabond.com.cn/cb/cn/xwgg/ggtz/zyjsgs/zytz/list.shtml";
             doc = Jsoup.connect(url).get();
             Log.i(TAG, "run: " + doc.title());
             Elements tables = doc.getElementsByTag("li").select("a");
-
-            String title,detail;
-            for (int i = 0; i < tables.size(); i++) {
-                title = tables.get(i).attr("title");
-                //detail = tables.get(i).attr("href");
-
-                Log.i(TAG, "run: " + title );
-
-                retList.add(title);
-
+            for(int i=24;i<tables.size();i++){
+                retList.add(( title = tables.get(i).attr("title"))+"#https://www.chinabond.com.cn"+(href=tables.get(i).attr("href")). replace("..",""));
+                Log.i(TAG, "run: title="+title+"==>"+"#https://www.chinabond.com.cn"+href);
             }
 
 
-            } catch (IOException e) {
-                e.printStackTrace();
 
-            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Message msg = handler.obtainMessage(7);
         msg.obj = retList;
         handler.sendMessage(msg);
     }
 
-    */
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Uri uri = Uri.parse(s);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        this.startActivity(intent);
+    }*/
+
 
 

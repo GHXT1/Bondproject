@@ -3,9 +3,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".SecondFragment2">
 
     <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:layout_height="120dp"
+        android:layout_width="120dp"
+        android:layout_marginLeft="130dp"
+        android:layout_marginTop="10dp"
+        app:srcCompat="@mipmap/bg4" />
 
 
+    <Button
+        android:id="@+id/btn_setting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:onClick="set"
+        android:text="@string/set"
+        tools:ignore="OnClick" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="130dp"
+        android:gravity="center"
+        android:text="@string/user"
+        android:textColor="#FB8C00"
+        android:textSize="25sp" />
+    <Button
+        android:id="@+id/btn_guanyu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="260dp"
+        android:onClick="guanyu"
+        android:text="@string/guanyu"
+        tools:ignore="OnClick" />
 </FrameLayout>

@@ -7,18 +7,35 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher1"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".MyListActivity"></activity>
+        <activity android:name=".JieshaoActivity"></activity>
+        <activity android:name=".MyList4Activity" />
+        <activity android:name=".SearchActivity" />
+        <activity android:name=".ShareActivity" />
+        <activity
+            android:name=".SettingActivity"
+            android:label="@string/setting_title"
+            tools:ignore="DuplicateActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.swufe.bond.BondshowActivity" />
+        </activity>
+        <activity android:name=".MyList3Activity" />
+        <activity android:name=".MyList2Activity" />
+        <activity android:name=".MyListActivity" />
         <activity android:name=".ThirdFragment3" />
         <activity android:name=".SecondFragment2" />
         <activity android:name=".FirstFragment1" />
         <activity android:name=".BondshowActivity" />
         <activity android:name=".RegisterActivity" />
+        <activity
+            android:name=".SearchActivity"
+            tools:ignore="DuplicateActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

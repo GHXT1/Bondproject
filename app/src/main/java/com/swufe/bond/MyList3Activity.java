@@ -1,53 +1,37 @@
 package com.swufe.bond;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ListActivity;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
-import java.util.Vector;
 
-public class MyListActivity extends ListActivity implements Runnable, AdapterView.OnItemClickListener {
+public class MyList3Activity extends ListActivity implements Runnable,AdapterView.OnItemClickListener {
     Handler handler;
-    private static final String TAG = "MyList";
-    private List<HashMap<String, String>> listItems;//存放文字
+    private static final String TAG = "MyList2";
+    private List<HashMap<String, String>> listItems3;//存放文字
     private SimpleAdapter listItemAdapter;//适配器
-    String href, title;
+    String href3, title3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +39,7 @@ public class MyListActivity extends ListActivity implements Runnable, AdapterVie
         initListView();
         this.setListAdapter(listItemAdapter);
         //MyAdapter myAdapter=new MyAdapter(this,R.layout.list_item,listItems);
-        //this.setListAdapter(myAdapter)
+        //this.setListAdapter(myAdapter);
 
 
         Thread t = new Thread(this);
@@ -65,11 +49,11 @@ public class MyListActivity extends ListActivity implements Runnable, AdapterVie
             @Override
             public void handleMessage(@NonNull Message msg) {
                 if (msg.what == 7) {
-                    listItems = (List<HashMap<String, String>>) msg.obj;
-                    listItemAdapter = new SimpleAdapter(MyListActivity.this, listItems,//listitems数据源
-                            R.layout.activity_my_list,//listitem的XML布局实现
+                    listItems3 = (List<HashMap<String, String>>) msg.obj;
+                    listItemAdapter = new SimpleAdapter(MyList3Activity.this, listItems3,//listitems数据源
+                            R.layout.activity_my_list3,//listitem的XML布局实现
                             new String[]{"ItemTitle", "ItemDetail"},
-                            new int[]{R.id.itemTitle, R.id.itemDetail}
+                            new int[]{R.id.itemTitle3, R.id.itemDetail3}
                     );
                     setListAdapter(listItemAdapter);
                 }
@@ -80,18 +64,17 @@ public class MyListActivity extends ListActivity implements Runnable, AdapterVie
     }
 
     private void initListView() {
-        listItems = new ArrayList<HashMap<String, String>>();
-        for (int i = 0; i < 20; i++) {
-            HashMap<String, String> map = new HashMap<String, String>();
-            map.put("ItemTitle", "Title" + i);//标题文字
+        listItems3 = new ArrayList<HashMap<String, String>>();
+        for (int i = 0; i < 20;i++){            HashMap<String, String> map = new HashMap<String, String>();
+            map.put("ItemTitle", "Rate:" + i);//标题文字
             map.put("ItemDetail", "detail" + i);//详细描述
-            listItems.add(map);
+            listItems3.add(map);
         }
         //生成适配器的Item和动态数组对应的元素
-        listItemAdapter = new SimpleAdapter(this, listItems,//listitems数据源
-                R.layout.activity_my_list,//listitem的XML布局实现
+        listItemAdapter = new SimpleAdapter(this, listItems3,//listitems数据源
+                R.layout.activity_my_list3,//listitem的XML布局实现
                 new String[]{"ItemTitle", "ItemDetail"},
-                new int[]{R.id.itemTitle, R.id.itemDetail}
+                new int[]{R.id.itemTitle3, R.id.itemDetail3}
         );
 
     }
@@ -101,24 +84,21 @@ public class MyListActivity extends ListActivity implements Runnable, AdapterVie
         List<HashMap<String, String>> retList = new ArrayList<HashMap<String, String>>();
 
         Document doc = null;
-        try {
-            for(int i=1;i<=3;i++) {
-                String url = "https://www.chinabond.com.cn/cb/cn/xwgg/ggtz/zyjsgs/zytz/list_"+i+".shtml";
-                doc = Jsoup.connect(url).get();
-                Log.i(TAG, "run: " + doc.title());
-                Elements tables = doc.getElementsByTag("li").select("a");
+        try { for(int i=1;i<=3;i++) {
+            String url = "https://www.chinabond.com.cn/Channel/41498?_tp_il_02="+i;
+            doc = Jsoup.connect(url).get();
+            Log.i(TAG, "run: " + doc.title());
+            Elements tables = doc.getElementsByTag("li").select("a");
+            for (int m= 39; m< tables.size(); m++){
+                HashMap<String, String> map = new HashMap<String, String>();
+                map.put("ItemTitle", title3 = tables.get(m).attr("title"));
+                map.put("ItemDetail", href3 = tables.get(m).attr("href"));
+                retList.add(map);
 
-                for (int m = 24; m < tables.size(); m++) {
-                    HashMap<String, String> map = new HashMap<String, String>();
-                    map.put("ItemTitle", title = tables.get(m).attr("title"));
-                    map.put("ItemDetail", href = tables.get(m).attr("href"));
-                    retList.add(map);
-
-                    Log.i(TAG, "run: title=" + title + "==>" + "https://www.chinabond.com.cn" + href);
-                }
+                Log.i(TAG, "run: title=" + title3 + "==>" + "https://www.chinabond.com.cn" + href3);
             }
 
-
+}
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -130,8 +110,8 @@ public class MyListActivity extends ListActivity implements Runnable, AdapterVie
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        TextView title = view.findViewById(R.id.itemTitle);
-        TextView detail = view.findViewById(R.id.itemDetail);
+        TextView title = view.findViewById(R.id.itemTitle3);
+        TextView detail = view.findViewById(R.id.itemDetail3);
 
 
         String detail2 = String.valueOf(detail.getText());

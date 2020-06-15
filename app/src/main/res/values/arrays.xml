@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="setting_list_label">
+        <item>小</item>
+        <item>中</item>
+        <item>大</item>
+        <item>特大</item>
+    </string-array>
+
+    <string-array name="setting_list_value">
+        <item>monthly</item>
+        <item>weekly</item>
+        <item>daily</item>
+        <item>hourly</item>
+    </string-array>
+    <declare-styleable name="affairinfo_fontsize" format="dimension"/>
+    <declare-styleable name="affairinfo_fontsize2" format="dimension">
+    </declare-styleable>
+</resources>

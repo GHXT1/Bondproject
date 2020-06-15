@@ -10,7 +10,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 
 public class MypageAdapter extends FragmentPagerAdapter {
-    private  String[] title=new String[]{"债务信息","用户","。。。。。。"};
+    private  String[] title=new String[]{"债务信息","用户","。。。。。"};
 
     public MypageAdapter(FragmentManager fm){
         super(fm);

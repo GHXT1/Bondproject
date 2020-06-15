@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">Bond</string>
+    <string name="app_name">IBH</string>
     <string name="bond_hint">Bond</string>
+    <string name="hint_keyword">请输入关键字</string>
     <string name="name">用户名:</string>
     <string name="code">密码:</string>
     <string name="code2">确认密码:</string>
@@ -9,13 +10,44 @@
     <string name="email">邮箱</string>
     <string name="save">注册</string>
     <string name="back">返回</string>
+    <string name="set">设置</string>
+    <string name="user">云商人</string>
     <string name="label_first">First page</string>
     <string name="label_sencond">Second page</string>
     <string name="label_third">Third page</string>
     <string name="nodata">新功能正在开发中，敬请期待</string>
     <string name="Title">answer</string>
     <string name="button1">新闻公告</string>
+    <string name="button2">债券市场报告</string>
+    <string name="button3">中债分析</string>
+    <string name="button4">宏观数据分析</string>
     <string name="nodata1">wait...</string>
+    <string name="action_settings">设置</string>
+    <string name="share">帮助与反馈</string>
+    <string name="search">搜索</string>
+    <string name="setting_title">设置页面</string>
+    <string name="guanyu">关于我们</string>
+    <string name="jieshao">关于我们</string>
+    <string name="xuzhi">投资有风险，用钱需谨慎</string>
+    <string name="xuzhi2">投资不规范，亲人两行泪</string>
+    <string name="xiangxi">本APP主要与“中国债券信息网（https://www.chinabond.com.cn）”相联系，用户能够很方便的获取所需要的最全面、最新、最权威的中
+    国债券的信息，让用户在做决策的时候，能够结合最新的信息，预测市场走向，减小投资风险。</string>
+
+
+    <string name="set_switch1_label">开关项</string>
+    <string name="set_checkbox1_label">复选项</string>
+    <string name="set_list_label">字体大小</string>
+    <string name="set_text1_label">选项1</string>
+    <string name="set_text2_label">选项2</string>
+    <string name="set_group1_label">分组1</string>
+    <string name="set_group2_label">分组2</string>
+
+    <!-- 控件ID -->
+    <string name="set_switch1_key">set_switch1</string>
+    <string name="set_checkbox1_key">set_checkbox1</string>
+    <string name="set_list_key">set_list</string>
+    <string name="set_text1_key">set_text1</string>
+    <string name="set_text2_key">set_text2</string>
 
 
 </resources>

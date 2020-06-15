@@ -42,19 +42,40 @@ import java.util.List;
 import java.util.ListIterator;
 
 public class FirstFragment1 extends Fragment {
-    Button News;
+    Button News,Report,Analysis,Data;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.activity_first_fragment1, null); // 先解析file.xml布局，得到一个view
          News=(Button)rootView.findViewById(R.id.button_news);
+         Report=(Button)rootView.findViewById(R.id.button_report);
+         Analysis=(Button)rootView.findViewById(R.id.button_analysis);
+         Data=(Button)rootView.findViewById(R.id.button_data);
          News.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
                  startActivity(new Intent(getActivity(),MyListActivity.class));
              }
          });
+        Report.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(),MyList2Activity.class));
+            }
+        });
+        Analysis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(),MyList3Activity.class));
+            }
+        });
+        Data.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(),MyList4Activity.class));
+            }
+        });
          return rootView;
 
     }

@@ -5,20 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MyListActivity">
-
-
+    tools:context=".MyList4Activity">
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/itemTitle"
+        android:id="@+id/itemTitle4"
         android:textSize="20sp"
         android:textColor="@color/colorPrimary"
         android:text="@string/app_name"/>
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/itemDetail"
+        android:id="@+id/itemDetail4"
         android:textSize="5sp"
         android:gravity="end"
         android:text="@string/app_name"/>
