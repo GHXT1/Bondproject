@@ -50,8 +50,8 @@ public class FirstFragment1 extends Fragment {
         View rootView = inflater.inflate(R.layout.activity_first_fragment1, null); // 先解析file.xml布局，得到一个view
          News=(Button)rootView.findViewById(R.id.button_news);
          Report=(Button)rootView.findViewById(R.id.button_report);
-         Analysis=(Button)rootView.findViewById(R.id.button_analysis);
          Data=(Button)rootView.findViewById(R.id.button_data);
+        Analysis=(Button)rootView.findViewById(R.id.button_analysis);
          News.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
